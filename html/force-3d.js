@@ -286,9 +286,20 @@ force.on("tick", function() {
   var link = left.selectAll(".link")
 
   link.selectAll("line")
-      .attr("x1", function(d) { return d.source.x })
+      .attr("x1", function(d) { 
+        var offset = d.source.offset
+        if (d.source.flags.client) offset += 2
+        if (d.source.flags.gateway) offset += -5
+
+        return d.source.x + -offset/2
+      })
       .attr("y1", function(d) { return d.source.y })
-      .attr("x2", function(d) { return d.target.x })
+      .attr("x2", function(d) { 
+        var offset = d.target.offset
+        if (d.target.flags.client) offset += 2
+        if (d.target.flags.gateway) offset += -5
+        return d.target.x + -offset/2
+      })
       .attr("y2", function(d) { return d.target.y })
 
   left.selectAll(".node").attr("transform", function(d) { 
@@ -303,19 +314,23 @@ force.on("tick", function() {
         if (d.source.flags.client) offset += 2
         if (d.source.flags.gateway) offset += -5
 
-        return d.source.x + w/2 + offset
+        return d.source.x + w/2 + offset/2
       })
       .attr("y1", function(d) { return d.source.y })
       .attr("x2", function(d) { 
         var offset = d.target.offset
         if (d.target.flags.client) offset += 2
         if (d.target.flags.gateway) offset += -5
-        return d.target.x + w/2 + offset
+        return d.target.x + w/2 + offset/2
       })
       .attr("y2", function(d) { return d.target.y })
 
   left.selectAll(".node").attr("transform", function(d) { 
-    return "translate(" + d.x + "," + d.y + ")";
+    var offset = d.offset
+    if (d.flags.client) offset += 2
+    if (d.flags.gateway) offset += -5
+
+    return "translate(" + (d.x + -offset/2) + "," + d.y + ")";
   })
 
   right.selectAll(".node").attr("transform", function(d) { 
@@ -323,7 +338,7 @@ force.on("tick", function() {
     if (d.flags.client) offset += 2
     if (d.flags.gateway) offset += -5
 
-    return "translate(" + (d.x + w/2 + offset) + "," + d.y + ")";
+    return "translate(" + (d.x + w/2 + offset/2) + "," + d.y + ")";
   })
 })
 
@@ -543,6 +558,23 @@ function update() {
                 .on("mouseover", fade(.2))
                 .on("mouseout", fade(1))
                 .on("click", show_node_info)
+                .call(d3.behavior.zoom() .on("zoom",
+                      function(d) {
+                        if (d3.event.sourceEvent.wheelDelta==undefined)
+                          return
+
+                        if (d3.event.sourceEvent.wheelDelta > 0)
+                          d.offset += 1 
+                        else
+                          d.offset -= 1 
+
+                        if (d.offset < -30) d.offset = -30
+                        if (d.offset > 30) d.offset = 30
+
+                        force.start()
+                      }
+                      ))
+                .on("zoom", alert)
                 .call(force.drag)
 
   nodeEnter.append("ellipse")
