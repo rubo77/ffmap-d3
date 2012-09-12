@@ -1,3 +1,14 @@
+requirejs.config({
+  shim: {
+    'helper/d3.v2': {
+        exports: 'd3'
+      }
+    }
+})
+
+require(["helper/jquery.min", "helper/d3.v2", "pacman", "links"],
+    function($, d3, pacman, links) {
+
 var style;
 
 function switch_style(s) {
@@ -592,3 +603,4 @@ function update() {
 reload()
 
 var timer = window.setInterval(reload, 30000)
+})
