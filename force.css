@@ -185,3 +185,9 @@ footer {
 footer a {
   color: #444;
 }
+
+ellipse.Fluse {
+  fill: red !important;
+  stroke: red !important;
+
+}

@@ -607,6 +607,11 @@ function update() {
       return r
     })
 
+  node.selectAll("ellipse").filter(function(d) {
+    return d.id == "38:e7:d8:ee:19:7a"
+  })
+  .classed("Fluse", true)
+
   var label = vis.select("g.labels")
                 .selectAll("g.label")
                 .data(nodes.filter(function(d) {
