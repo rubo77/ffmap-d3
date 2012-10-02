@@ -607,6 +607,11 @@ function update() {
       return r
     })
 
+  node.selectAll("ellipse")
+    .filter(function(d) {
+      return d.flags.client && is_apple(d.macs)
+    }).classed("apple", true)
+
   var label = vis.select("g.labels")
                 .selectAll("g.label")
                 .data(nodes.filter(function(d) {
@@ -704,6 +709,26 @@ function update() {
     show_node(hashstr)
 }
 
+var applemacs
+
+d3.text("applemacs.txt", function(macs) {
+  applemacs = macs.toLowerCase().split("\n")
+})
+
+function is_apple(mac) {
+  for (var i in applemacs) {
+    var amac = applemacs[i]
+    if (amac.length == 0)
+      continue
+
+    if (mac.indexOf(amac) == 0) {
+      return true
+    }
+  }
+
+  return false
+}
+
 var initial = 1
 
 reload()
@@ -711,7 +736,6 @@ reload()
 var timer = window.setInterval(reload, 30000)
 
 function redraw() {
-  console.log("zoom")
   vis.attr("transform",
       "translate(" + d3.event.translate + ") "
       + "scale(" + d3.event.scale + ")")

@@ -25,6 +25,10 @@
   fill: #FFF0B3;
 }
 
+ellipse.apple {
+  fill: #ff00ff !important;
+}
+
 #nodeinfo {
   position: absolute;
   background: #fff;
