@@ -5,7 +5,7 @@ var ffmapConfig = {
   url:       "/",
   
   // visible link in the navigation:
-  sitename:  "luebeck.freifunk.net",
+  sitename:  "kiel.freifunk.net",
   
   // initial gravity, friction, of the graph at pageload:
   gravity:   0.15,
