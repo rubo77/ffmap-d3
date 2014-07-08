@@ -1,3 +1,3 @@
-*.js
-*.html
+geomap.html graph.html list.html stats.html
+geomap.js graph.js list.js stats.js
 nodes.json

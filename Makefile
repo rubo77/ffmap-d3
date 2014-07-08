@@ -1,25 +1,31 @@
 CAT=cat
+SED=sed
 
-GEOMAP_SRC  = config.js lib/loader.js lib/links.js lib/html5slider.js lib/geomap.js lib/init.js
-GRAPH_SRC   = config.js lib/loader.js lib/links.js lib/pacman.js lib/graph.js lib/init.js
-LIST_SRC    = config.js lib/loader.js lib/links.js lib/list.js lib/init.js
-STATS_SRC   = config.js lib/loader.js lib/stats.js lib/init.js
+TARGETS = geomap graph list stats
 
-all: geomap_compiled.js graph_compiled.js list_compiled.js stats_compiled.js
+all: $(foreach target,$(TARGETS),$(target).html) $(foreach target,$(TARGETS),$(target).js)
+
+include config.mk
+
+GEOMAP_SRC  = config.js lib/loader.js lib/links.js lib/html5slider.js lib/geomap.js
+GRAPH_SRC   = config.js lib/loader.js lib/links.js lib/pacman.js lib/graph.js
+LIST_SRC    = config.js lib/loader.js lib/links.js lib/list.js
+STATS_SRC   = config.js lib/loader.js lib/stats.js
 
 clean:
-	rm -f geomap_compiled.js
-	rm -f graph_compiled.js
-	rm -f list_compiled.js
-	rm -f stats_compiled.js
+	rm -f $(foreach target,$(TARGETS),$(target).html)
+	rm -f $(foreach target,$(TARGETS),$(target).js)
 
-%_compiled.js:
+%.html: templates/%.html
+	$(CAT) $^ | $(SED) -e "s:#cityname#:$(CITYNAME):g" -e "s:#sitename#:$(SITENAME):g" -e "s:#url#:$(URL):g" > $@
+
+%.js:
 	$(CAT) $^ > $@
 
-geomap_compiled.js: $(GEOMAP_SRC)
+geomap.js: $(GEOMAP_SRC)
 
-graph_compiled.js: $(GRAPH_SRC)
+graph.js: $(GRAPH_SRC)
 
-list_compiled.js: $(LIST_SRC)
+list.js: $(LIST_SRC)
 
-stats_compiled.js: $(STATS_SRC)
+stats.js: $(STATS_SRC)
