@@ -1,4 +1,3 @@
-*_compiled.js
+*.js
+*.html
 nodes.json
-fqhn.txt
-ort.txt
