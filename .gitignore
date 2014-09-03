@@ -1,9 +1,5 @@
-geomap.html
-geomap.js
-graph.html
-graph.js
-list.html
-list.js
-stats.html
-stats.js
+nodes/*.png
 nodes.json
+lib/vendor/*
+*_compiled.js
+*.html
