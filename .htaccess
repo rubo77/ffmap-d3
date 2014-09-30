@@ -1,6 +1,0 @@
-Options +ExecCGI
-XBitHack on
-AddHandler cgi-script .cgi
-Redirect 301 /ffmap/nodes.html /ffmap/graph.html
-
-DirectoryIndex graph.html

@@ -8,15 +8,15 @@ if ! test "${#NODE}" -eq 12 || ! echo "${NODE}" | egrep -q '^[0-9a-f]{12}$' ; th
   exit 0
 fi
 
-NODERRD=/opt/ffmap/nodedb/${NODE}.rrd
-NODEPNG=/opt/ffmap/nodeplots/${NODE}.png
+NODERRD=/opt/ffmap-backend/nodedb/${NODE}.rrd
+NODEPNG=/opt/ffmap-backend/nodeplots/${NODE}.png
 
 if test -r $NODERRD ; then
   echo Status: 200 OK
 else
   echo Status: 404 File not found
 
-  NODERRD=/opt/ffmap/nosuchnode.rrd
+  NODERRD=/opt/ffmap-backend/nosuchnode.rrd
 fi
 
 echo Refresh: 60

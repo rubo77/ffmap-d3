@@ -6,4 +6,8 @@ CITYNAME := Kiel
 SITENAME := kiel.freifunk.net
 
 # URL of your main community site
-URL := /
+URL := http://freifunk.in-kiel.de/
+
+ALFRED_URL := http://alfred.freifunk.in-kiel.de/
+GRAPH_URL := http://graph.freifunk.in-kiel.de/
+MAP_URL := http://map.freifunk.in-kiel.de/

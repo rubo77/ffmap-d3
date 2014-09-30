@@ -1,4 +1,4 @@
-/* after making any changes here enter "make" in your terminal to appy the changes */
+/* after making any changes here enter "make" in your terminal to apply the changes */
 
 var ffmapConfig = {
   // initial gravity, friction, of the graph at pageload:
@@ -10,5 +10,9 @@ var ffmapConfig = {
   strength:  1.0,
 
   // path to the nodes.json
-  nodes_json: "nodes.json",
+  nodes_json: "json/nodes.json",
+
+  alfredURL: "#alfredurl#",
+  graphURL: "#graphurl#",
+  mapURL: "#mapurl#",
 };

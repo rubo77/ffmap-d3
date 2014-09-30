@@ -1,5 +1,4 @@
-nodes/*.png
-nodes.json
 lib/vendor/*
+config.js
 *_compiled.js
 *.html
