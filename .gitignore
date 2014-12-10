@@ -1,4 +1,4 @@
-lib/vendor/*
+#lib/vendor/*
 config.js
 *_compiled.js
 *.html
