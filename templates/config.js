@@ -15,4 +15,5 @@ var ffmapConfig = {
   alfredURL: "#alfredurl#",
   graphURL: "#graphurl#",
   mapURL: "#mapurl#",
+  listURL: "#listurl#",
 };

@@ -2,3 +2,4 @@ lib/vendor/*
 config.js
 *_compiled.js
 *.html
+*.json

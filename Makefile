@@ -1,7 +1,7 @@
 CAT=cat
 SED=sed
 
-TARGETS = geomap graph stats
+TARGETS = geomap graph stats list
 
 all: $(foreach target,$(TARGETS),$(target).html) $(foreach target,$(TARGETS),$(target)_compiled.js)
 
@@ -28,6 +28,7 @@ lib/vendor/leaflet.js:
 	-e "s!#alfredurl#!$(ALFRED_URL)!g" \
 	-e "s!#mapurl#!$(MAP_URL)!g" \
 	-e "s!#graphurl#!$(GRAPH_URL)!g" \
+	-e "s!#listurl#!$(LIST_URL)!g" \
 	> $@
 
 %_compiled.js:
@@ -35,10 +36,13 @@ lib/vendor/leaflet.js:
 
 GEOMAP_SRC  = config.js lib/loader.js lib/vendor/d3.min.js lib/links.js lib/vendor/leaflet.js lib/html5slider.js lib/geomap.js
 GRAPH_SRC   = config.js lib/loader.js lib/vendor/d3.min.js lib/links.js lib/pacman.js lib/graph.js
+LIST_SRC    = config.js lib/loader.js lib/vendor/d3.min.js lib/links.js lib/vendor/jquery-1.11.0.min.js lib/vendor/jquery.tablesorter.min.js lib/list.js
 STATS_SRC   = config.js lib/loader.js lib/stats.js
 
 geomap_compiled.js: $(GEOMAP_SRC)
 
 graph_compiled.js: $(GRAPH_SRC)
+
+list_compiled.js: $(LIST_SRC)
 
 stats_compiled.js: $(STATS_SRC)

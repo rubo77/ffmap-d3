@@ -11,3 +11,4 @@ URL := http://freifunk.in-kiel.de/
 ALFRED_URL := http://alfred.freifunk.in-kiel.de/
 GRAPH_URL := http://graph.freifunk.in-kiel.de/
 MAP_URL := http://map.freifunk.in-kiel.de/
+LIST_URL := http://alfred.freifunk.in-kiel.de/list.html
